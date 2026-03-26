@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Twin - PID Control</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #e0e0e0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        #ui-panel {
+            position: absolute;
+            top: 200px;
+            left: 300px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            width: 220px;
+            border: 1px solid #ccc;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #34495e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #2c3e50;
+        }
+
+        /* Scale labels style */
+        .label-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .scale-mark {
+            position: absolute;
+            color: #444;
+            font-size: 13px;
+            font-weight: bold;
+            white-space: nowrap;
+            transform: translate(15px, -50%);
+            /* Moves text to the right of the line */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="ui-panel">
+        <div class="stat-label">Actual Height</div>
+        <div id="levelText" class="stat-value">0.0 cm</div>
+        <div class="stat-label">Tank Capacity</div>
+        <div id="percentText" class="stat-value">0%</div>
+        <hr style="border:0; border-top:1px solid #eee;">
+        <label class="stat-label">Target Setpoint (%)</label>
+        <input type="number" id="setPointInput" value="50" min="0" max="100">
+        <button id="sendSetPoint">Update PID</button>
+    </div>
+
+    <!-- Container for 10%-100% overlay -->
+    <div id="labels" class="label-container"></div>
+
+    <!-- Load Three.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="3d.js"></script>
+</body>
+
+</html>
