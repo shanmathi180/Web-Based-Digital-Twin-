@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>3D Tank 13cm</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial;
+        }
+
+        .ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .scale-mark {
+            position: absolute;
+            color: #333;
+            font-size: 11px;
+            font-weight: bold;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ui">
+        <h2 style="margin-top:0;">Water Level: <span id="levelText">0.0 cm</span></h2>
+        <h3 style="color: #2196F3;">Fill: <span id="percentText">0%</span></h3>
+        <hr>
+        <label>Set Point (cm):</label><br>
+        <input type="number" id="setPointInput" value="6.5" step="0.5" style="width: 60px; padding: 5px;">
+        <button id="sendSetPoint" style="padding: 5px 10px; cursor: pointer;">Update</button>
+    </div>
+    <div id="labels"></div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+            }
+        }
+    </script>
+    <script type="module" src="3d.js"></script>
+</body>
+
+</html>
